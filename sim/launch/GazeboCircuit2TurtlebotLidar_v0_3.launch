@@ -11,7 +11,7 @@
 
 <group ns="sim1">
   <remap from="/clock" to="/sim1/clock"/>
-  <env name="GAZEBO_MASTER_URI" value="http://localhost:11346"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11345"/>
   <arg name="spawn_ns" value="/sim1/gazebo"/>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="use_sim_time" value="true"/>
@@ -34,7 +34,7 @@
 
 <group ns="sim2">
   <remap from="/clock" to="/sim2/clock"/>
-  <env name="GAZEBO_MASTER_URI" value="http://localhost:11347"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11346"/>
   <arg name="spawn_ns" value="/sim2/gazebo"/>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="use_sim_time" value="true"/>
@@ -57,7 +57,7 @@
 
 <group ns="sim3">
   <remap from="/clock" to="/sim3/clock"/>
-  <env name="GAZEBO_MASTER_URI" value="http://localhost:11348"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11347"/>
   <arg name="spawn_ns" value="/sim3/gazebo"/>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="use_sim_time" value="true"/>

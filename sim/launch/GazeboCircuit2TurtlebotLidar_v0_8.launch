@@ -1,0 +1,204 @@
+<launch>
+  <arg name="world_file"  default="$(find sim)/world/circuit2.world"/>
+  <arg name="base"      value="$(optenv TURTLEBOT_BASE kobuki)"/> <!-- create, roomba -->
+  <arg name="battery"   value="$(optenv TURTLEBOT_BATTERY /proc/acpi/battery/BAT0)"/>  <!-- /proc/acpi/battery/BAT0 --> 
+  <arg name="gui" default="false"/>
+  <!--arg name="paused" value="true"/>
+ 
+  <arg name="headless" value="true"/-->
+  <arg name="stacks"    value="$(optenv TURTLEBOT_STACKS hexagons)"/>  <!-- circles, hexagons --> 
+  <arg name="3d_sensor" value="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro --> 
+
+<group ns="sim1">
+  <remap from="/clock" to="/sim1/clock"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11345"/>
+  <arg name="spawn_ns" value="/sim1/gazebo"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+  
+  <include file="$(find sim)/launch/$(arg base).launch.xml">
+    <arg name="base" value="$(arg base)"/>
+    <arg name="stacks" value="$(arg stacks)"/>
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+    <arg name="gazebo_ns" value="$(arg spawn_ns)" />
+  </include>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="tf_prefix" value="sim1" />
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+</group>
+
+<group ns="sim2">
+  <remap from="/clock" to="/sim2/clock"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11346"/>
+  <arg name="spawn_ns" value="/sim2/gazebo"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+  
+  <include file="$(find sim)/launch/$(arg base).launch.xml">
+    <arg name="base" value="$(arg base)"/>
+    <arg name="stacks" value="$(arg stacks)"/>
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+    <arg name="gazebo_ns" value="$(arg spawn_ns)" />
+  </include>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="tf_prefix" value="sim2" />
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+</group>
+
+<group ns="sim3">
+  <remap from="/clock" to="/sim3/clock"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11347"/>
+  <arg name="spawn_ns" value="/sim3/gazebo"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+  
+  <include file="$(find sim)/launch/$(arg base).launch.xml">
+    <arg name="base" value="$(arg base)"/>
+    <arg name="stacks" value="$(arg stacks)"/>
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+    <arg name="gazebo_ns" value="$(arg spawn_ns)" />
+  </include>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="tf_prefix" value="sim3" />
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+</group>
+
+<group ns="sim4">
+  <remap from="/clock" to="/sim4/clock"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11348"/>
+  <arg name="spawn_ns" value="/sim4/gazebo"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+  
+  <include file="$(find sim)/launch/$(arg base).launch.xml">
+    <arg name="base" value="$(arg base)"/>
+    <arg name="stacks" value="$(arg stacks)"/>
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+    <arg name="gazebo_ns" value="$(arg spawn_ns)" />
+  </include>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="tf_prefix" value="sim4" />
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+</group>
+
+<group ns="sim5">
+  <remap from="/clock" to="/sim5/clock"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11349"/>
+  <arg name="spawn_ns" value="/sim5/gazebo"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+  
+  <include file="$(find sim)/launch/$(arg base).launch.xml">
+    <arg name="base" value="$(arg base)"/>
+    <arg name="stacks" value="$(arg stacks)"/>
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+    <arg name="gazebo_ns" value="$(arg spawn_ns)" />
+  </include>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="tf_prefix" value="sim5" />
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+</group>
+
+<group ns="sim6">
+  <remap from="/clock" to="/sim6/clock"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11350"/>
+  <arg name="spawn_ns" value="/sim6/gazebo"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+  
+  <include file="$(find sim)/launch/$(arg base).launch.xml">
+    <arg name="base" value="$(arg base)"/>
+    <arg name="stacks" value="$(arg stacks)"/>
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+    <arg name="gazebo_ns" value="$(arg spawn_ns)" />
+  </include>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="tf_prefix" value="sim6" />
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+</group>
+
+<group ns="sim7">
+  <remap from="/clock" to="/sim7/clock"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11351"/>
+  <arg name="spawn_ns" value="/sim7/gazebo"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+  
+  <include file="$(find sim)/launch/$(arg base).launch.xml">
+    <arg name="base" value="$(arg base)"/>
+    <arg name="stacks" value="$(arg stacks)"/>
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+    <arg name="gazebo_ns" value="$(arg spawn_ns)" />
+  </include>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="tf_prefix" value="sim7" />
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+</group>
+
+<group ns="sim8">
+  <remap from="/clock" to="/sim8/clock"/>
+  <env name="GAZEBO_MASTER_URI" value="http://localhost:11352"/>
+  <arg name="spawn_ns" value="/sim8/gazebo"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+  
+  <include file="$(find sim)/launch/$(arg base).launch.xml">
+    <arg name="base" value="$(arg base)"/>
+    <arg name="stacks" value="$(arg stacks)"/>
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+    <arg name="gazebo_ns" value="$(arg spawn_ns)" />
+  </include>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="tf_prefix" value="sim8" />
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+</group>
+
+</launch>
